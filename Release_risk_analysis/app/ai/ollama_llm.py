@@ -5,6 +5,7 @@ class OllamaLLM:
         self.model = model
 
     def generate(self, prompt: str) -> str:
+        print("")
         response = ollama.chat(
             model=self.model,
             messages=[{"role": "user", "content": prompt}],
