@@ -13,3 +13,16 @@ def validate(df, required_cols, release_id):
     df = df.fillna(0)
 
     return df
+
+def extract_single_release_id(df):
+    if "release_id" not in df.columns:
+        raise ValueError("Missing 'release_id' column")
+
+    release_ids = df["release_id"].dropna().unique()
+
+    if len(release_ids) != 1:
+        raise ValueError(
+            f"Expected exactly one release_id, found: {list(release_ids)}"
+        )
+
+    return release_ids[0]
